@@ -1,1 +1,2 @@
 discord
+pylint==1.8.3
