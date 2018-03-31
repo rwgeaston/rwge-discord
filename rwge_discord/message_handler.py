@@ -3,7 +3,7 @@ import logging
 
 import discord
 
-from .config import TOKEN, ALLOWED_CHANNELS
+from .config import ALLOWED_CHANNELS
 from .rwge import get_response
 
 logging.basicConfig(level=logging.INFO)
@@ -34,14 +34,19 @@ async def on_message(message):
         logger.info(f'{message.channel} is not my channel')
         return
 
-    response = await get_response(message.content, message.author.name, mentioned)
+    try:
+        response = await get_response(message.content, message.author.name, mentioned)
+    except Exception as e:  # it's more useful to just log every failure here # pylint: disable=broad-except
+        response = None
+        logger.exception(e)
+        logger.warning(f'Had an exception when replying to message "{message.content}" in {message.channel}')
+
     if response:
+        logger.info(f'Replying to message "{message.content}" in {message.channel} with: "{response}"')
         await client.send_message(message.channel, response)
 
 
 @client.event
 async def on_ready():
     """Shows some debug on startup"""
-    logger.info(f'Logged in as {client.user.name} (ID: {client.user.id}')
-
-client.run(TOKEN)
+    logger.info(f'Logged in as {client.user.name} (ID: {client.user.id})')
