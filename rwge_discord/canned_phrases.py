@@ -21,7 +21,6 @@ canned_phrases = [
     (('liquid',), (), 95, 'i don\'t understand the physics of liquid at all'),
     (('physics',), (), 95, 'i don\'t understand the physics of liquid at all'),
     (('poker',), (), 55, 'slacker'),
-    ((' 188 ',), (), 100, 'the 188 is my favourite bus'),
     (('ds mode',), (), 100, 'it\'s called rm mode'),
     (('brown sauce',), (), 100, 'i like brown sauce'),
     (('spoons',), (), 100, 'i love spoons'),
