@@ -18,7 +18,7 @@ def mother_joke(sentence):
 
     # Didn't work out this time.
     if last_good_index == -1:
-        return False, ''
+        return ''
 
     return joke_found(words, last_good_index, last_good_verb)
 
@@ -32,7 +32,6 @@ def joke_found(words, last_good_index, last_good_verb):
     # Another option is just return False for anything that appears to be a question.
     for pronoun in ['i', 'you', 'we', 'they', 'she', 'he', 'it']:
         if pronoun == rest_of_joke[0]:
-            # return False, ''
             rest_of_joke = rest_of_joke[1:]
 
     flip_pronouns(rest_of_joke)
